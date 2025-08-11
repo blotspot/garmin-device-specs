@@ -115,7 +115,12 @@ def parse_device_details(device_id: str) -> dict | None:
         cells = row.find_all('td')
         if len(cells) == 3:
             app_type, app_memory = cells[0].text.replace(" ", ""), cells[1].text.strip()
-            device_data[f"{app_type}Memory"] = app_memory
+            try:
+                memory = int(app_memory)
+            except (ValueError, TypeError):
+                memory = 0
+                    
+            device_data[f"{app_type}Memory"] = memory
 
     # Ensure the 'Id' key exists, which we use for our dictionary
     if 'Id' not in device_data:
@@ -201,15 +206,11 @@ def enrich_with_api_levels(all_devices_data: dict) -> dict:
     return all_devices_data
 
 
-def format_memory(byte_string: str) -> str:
+def format_memory(bytes_val: int) -> str:
     """
     Converts a string representing bytes into a human-readable KB or MB format.
     """
-    try:
-        bytes_val = int(byte_string)
-    except (ValueError, TypeError):
-        return byte_string
-
+    
     if bytes_val == 0:
         return '0 KB'
 
@@ -235,17 +236,21 @@ def save_markdown_table(filename, all_devices_data: dict):
         print("No device data to generate a table from.")
         return
 
-    # Define headers, including the new 'Active' column
     headers = [
+        'Active', 
         'Name', 
         'Id', 
         'ScreenShape',
         'ScreenSize',
         'Touch',
         'APILevel', 
+        'AudioContentProviderMemory',
+        'BackgroundMemory',
+        'DataFieldMemory',
+        'GlanceMemory',
         'WatchAppMemory',
         'WatchFaceMemory',
-        'DataFieldMemory',
+        'WidgetMemory',
         'Buttons'
     ]
 
@@ -258,16 +263,21 @@ def save_markdown_table(filename, all_devices_data: dict):
             f.write(f"| {'|'.join(['---'] * len(headers))}|\n")
             # Process and write each device row
             for device in data_list:
-                is_active = device.get('Active')
-                status_icon = ':heavy_check_mark:' if is_active else ':x:'
-                
                 row_data = []
+                
+                
                 for header in headers:
                     raw_value = device.get(header, 'N/A')
                     if header.endswith('Memory'):
-                        formatted_value = format_memory(str(raw_value))
+                        try:
+                            formatted_value = format_memory(int(raw_value))
+                        except (ValueError, TypeError):
+                            formatted_value = raw_value
+                        
+                    elif header == 'Active':
+                        formatted_value = ':heavy_check_mark:' if device.get('Active') else ':x:'
                     else:
-                        formatted_value = str(raw_value)
+                        formatted_value = raw_value
                     row_data.append(formatted_value.replace('|', '\\|'))
 
                 f.write(f"|{' | '.join(row_data)} |\n")
@@ -289,7 +299,7 @@ def main():
     current_device_ids = get_device_ids()
     if not current_device_ids:
         print("FATAL: Could not fetch the master list of devices. Aborting.")
-        return # Exit if we couldn't fetch the master list
+        return
 
     # 3. Compare the lists to find what's new and what's been removed
     new_ids = current_device_ids - existing_ids
@@ -332,6 +342,7 @@ def main():
 
     # 7. Save the final markdown table
     save_markdown_table(MD_FILENAME, updated_devices_data)
+
 
 if __name__ == "__main__":
     main()
