@@ -246,7 +246,6 @@ def save_markdown_table(filename, all_devices_data: dict):
         'ScreenShape',
         'ScreenSize',
         'APILevel', 
-        'Touch',
         'AudioContentProviderMemory',
         'BackgroundMemory',
         'DataFieldMemory',
@@ -254,6 +253,7 @@ def save_markdown_table(filename, all_devices_data: dict):
         'WatchAppMemory',
         'WatchFaceMemory',
         'WidgetMemory',
+        'Touch',
         'Buttons'
     ]
 
