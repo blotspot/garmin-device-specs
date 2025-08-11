@@ -242,8 +242,8 @@ def save_markdown_table(filename, all_devices_data: dict):
         'Id', 
         'ScreenShape',
         'ScreenSize',
-        'Touch',
         'APILevel', 
+        'Touch',
         'AudioContentProviderMemory',
         'BackgroundMemory',
         'DataFieldMemory',
@@ -267,7 +267,7 @@ def save_markdown_table(filename, all_devices_data: dict):
                 
                 
                 for header in headers:
-                    raw_value = device.get(header, 'N/A')
+                    raw_value = device.get(header, '')
                     if header.endswith('Memory'):
                         try:
                             formatted_value = format_memory(int(raw_value))
