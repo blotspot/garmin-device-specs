@@ -103,6 +103,9 @@ def parse_device_details(device_id: str) -> dict | None:
         if len(cells) == 2:
             col_id = cells[0].text.replace(" ", "")
             device_data[col_id] = cells[1].text.strip()
+            if col_id == 'Touch':
+                # Convert touch string to boolean
+                device_data[col_id] = device_data[col_id].lower() == 'true'
             if col_id == 'ScreenSize':
                 # split into width and height
                 size_parts = device_data[col_id].split('x')
@@ -273,9 +276,12 @@ def save_markdown_table(filename, all_devices_data: dict):
                             formatted_value = format_memory(int(raw_value))
                         except (ValueError, TypeError):
                             formatted_value = raw_value
-                        
-                    elif header == 'Active':
-                        formatted_value = ':heavy_check_mark:' if device.get('Active') else ':x:'
+                    elif header == 'Touch':
+                        raw_value = bool(raw_value)
+                        formatted_value = ':heavy_check_mark:' if raw_value else ':x:'
+                    elif header in ['Active', 'Touch']:
+                        raw_value = device.get(header, False)
+                        formatted_value = ':heavy_check_mark:' if raw_value else ':x:'
                     else:
                         formatted_value = raw_value
                     row_data.append(formatted_value.replace('|', '\\|'))
