@@ -201,6 +201,32 @@ def enrich_with_api_levels(all_devices_data: dict) -> dict:
     return all_devices_data
 
 
+def format_memory(byte_string: str) -> str:
+    """
+    Converts a string representing bytes into a human-readable KB or MB format.
+    """
+    try:
+        bytes_val = int(byte_string)
+    except (ValueError, TypeError):
+        return byte_string
+
+    if bytes_val == 0:
+        return '0 KB'
+
+    KB = 1024
+    MB = KB * 1024
+
+    # If the value is 1MB or more, display it in Megabytes with one decimal place.
+    if bytes_val >= MB:
+        megabytes = bytes_val / MB
+        return f'{megabytes:.1f} MB'
+    
+    # Otherwise, display it in Kilobytes, rounded to the nearest whole number.
+    else:
+        kilobytes = round(bytes_val / KB)
+        return f'{kilobytes} KB'
+
+
 def save_markdown_table(filename, all_devices_data: dict):
     """
     Prints a dictionary of device data as a formatted Markdown table.
@@ -228,16 +254,24 @@ def save_markdown_table(filename, all_devices_data: dict):
 
     try:
         with open(filename, 'w', encoding='utf-8') as f:
-            f.write(f"| Active | {' | '.join(headers)} |\n")
-            f.write(f"| --- | {'|'.join(['---'] * len(headers))}|\n")
+            f.write(f"| {' | '.join(headers)} |\n")
+            f.write(f"| {'|'.join(['---'] * len(headers))}|\n")
+            # Process and write each device row
             for device in data_list:
-                active_flag = device.get('Active', True)
-                active_str = ':heavy_check_mark:' if active_flag else ':x:'
-                # Convert boolean to string for Markdown
-                row_data = [ 
-                    str(device.get(h, 'N/A')).replace('|', '\\|') for h in headers
-                ]
-                f.write(f"| {' | '.join([active_str] + row_data)} |\n")
+                is_active = device.get('Active')
+                status_icon = ':heavy_check_mark:' if is_active else ':x:'
+                
+                row_data = []
+                for header in headers:
+                    raw_value = device.get(header, 'N/A')
+                    if header.endswith('Memory'):
+                        formatted_value = format_memory(str(raw_value))
+                    else:
+                        formatted_value = str(raw_value)
+                    row_data.append(formatted_value.replace('|', '\\|'))
+
+                f.write(f"|{' | '.join(row_data)} |\n")
+
         print(f"\nSuccessfully saved markdown table data for {len(data_list)} devices to '{filename}'.")
     except IOError as e:
         print(f"Error saving data to '{filename}': {e}")
