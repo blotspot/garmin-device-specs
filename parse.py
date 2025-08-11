@@ -211,7 +211,6 @@ def save_markdown_table(filename, all_devices_data: dict):
 
     # Define headers, including the new 'Active' column
     headers = [
-        'Active', 
         'Name', 
         'Id', 
         'ScreenShape',
@@ -229,13 +228,16 @@ def save_markdown_table(filename, all_devices_data: dict):
 
     try:
         with open(filename, 'w', encoding='utf-8') as f:
-            f.write(f"| {' | '.join(headers)} |\n")
-            f.write(f"|{'|'.join(['---'] * len(headers))}|\n")
+            f.write(f"| Active | {' | '.join(headers)} |\n")
+            f.write(f"| --- | {'|'.join(['---'] * len(headers))}|\n")
             for device in data_list:
-                row_data = [
+                active_flag = device.get('Active', True)
+                active_str = ':heavy_check_mark:' if active_flag else ':x:'
+                # Convert boolean to string for Markdown
+                row_data = [ 
                     str(device.get(h, 'N/A')).replace('|', '\\|') for h in headers
                 ]
-                f.write(f"| {' | '.join(row_data)} |\n")
+                f.write(f"| {' | '.join([active_str] + row_data)} |\n")
         print(f"\nSuccessfully saved markdown table data for {len(data_list)} devices to '{filename}'.")
     except IOError as e:
         print(f"Error saving data to '{filename}': {e}")
@@ -289,7 +291,7 @@ def main():
         print("\nNo new devices found.")
 
     # 6. Save the consolidated data back to JSON
-    if new_ids or deprecated_ids or active_again_ids:
+    if new_ids or deprecated_ids:
         save_to_json(JSON_FILENAME, updated_devices_data)
     else:
         print("\nNo changes to local data file needed.")
