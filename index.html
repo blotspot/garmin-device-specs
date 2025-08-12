@@ -169,14 +169,13 @@
         function filterAndRender(query) {
           let filteredData = [];
           // Regex to parse "Attribute Operator Value" queries, e.g., "Memory >= 256000"
-          const advancedQueryRegex = /^(\w+)\s*([><!=]=?)\s*(-?\d+(\.\d+)?)$/;
+          const advancedQueryRegex = /^(\w+)\s*([><!=]=?)\s*"?\s*([-_\d\w\s\.]+)?\s*"?\s*$/;
           const match = query.match(advancedQueryRegex);
 
           try {
             if (match) {
               // Advanced JQ-like query
-              const [, attribute, operator, valueStr] = match;
-              const value = parseFloat(valueStr);
+              const [attribute, operator, value] = match;
 
               if (!COLUMNS.includes(attribute)) {
                 throw new Error(`Attribute "${attribute}" does not exist.`);
@@ -242,7 +241,11 @@
               const row = tableBody.insertRow();
               COLUMNS.forEach((col) => {
                 const cell = row.insertCell();
-                cell.textContent = item[col] ?? "";
+                if (col == "Touch" || col == "Active") {
+                  cell.textContent = item[col] ? "Yes" : "No";
+                } else {
+                  cell.textContent = item[col] ?? "";
+                }
               });
             });
           }
