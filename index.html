@@ -184,28 +184,29 @@
               filteredData = allData.filter((item) => {
                 const itemValue = item[attribute];
                 if (itemValue === undefined) return false;
+                var parsedValue = value;
                 if (typeof itemValue === "number") {
-                  value = parseFloat(value);
+                  parsedValue = parseFloat(value);
                   if (isNaN(value)) {
                     return false;
                   }
                 } else if (typeof itemValue === "boolean") {
-                  value = ["true", "1"].includes(value.toLowerCase());
+                  parsedValue = ["true", "1"].includes(value.toLowerCase());
                 }
 
                 switch (operator) {
                   case ">":
-                    return itemValue > value;
+                    return itemValue > parsedValue;
                   case ">=":
-                    return itemValue >= value;
+                    return itemValue >= parsedValue;
                   case "<":
-                    return itemValue < value;
+                    return itemValue < parsedValue;
                   case "<=":
-                    return itemValue <= value;
+                    return itemValue <= parsedValue;
                   case "==":
-                    return itemValue == value;
+                    return itemValue == parsedValue;
                   case "!=":
-                    return itemValue != value;
+                    return itemValue != parsedValue;
                   default:
                     return false;
                 }
