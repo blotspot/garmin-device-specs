@@ -32,7 +32,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add db/garmin_devices.json static/garmin_devices.md
+          git add garmin_devices.json garmin_devices.md
 
           if git diff --staged --quiet; then
             echo "No changes to commit."

@@ -13,7 +13,7 @@ API_LVL_URL = f"{BASE_URL}/connect-iq/compatible-devices/"
 DETAIL_URL_TEMPLATE = (
     f"{BASE_URL}/connect-iq/articles/device-reference/{{device_id}}.html"
 )
-JSON_FILENAME = "db/garmin_devices.json"
+JSON_FILENAME = "garmin_devices.json"
 MD_FILENAME = "garmin_devices.md"
 MAX_WORKERS = 10  # Number of parallel threads to fetch device details
 
