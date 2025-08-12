@@ -175,7 +175,7 @@
           try {
             if (match) {
               // Advanced JQ-like query
-              const [attribute, operator, value] = match;
+              const [, attribute, operator, value] = match;
 
               if (!COLUMNS.includes(attribute)) {
                 throw new Error(`Attribute "${attribute}" does not exist.`);
