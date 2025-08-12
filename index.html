@@ -285,6 +285,7 @@
                   cell.textContent = item[col] ? "Yes" : "No";
                 } else {
                   cell.textContent = item[col] ?? "";
+                  cell.innerHTML = cell.textContent.replace(/\s?[\/,]\s?/g, "<br>");
                 }
               });
             });
