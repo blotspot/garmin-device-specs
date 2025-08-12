@@ -203,7 +203,11 @@
                     return itemValue < parsedValue;
                   case "<=":
                     return itemValue <= parsedValue;
+                  case "=":
                   case "==":
+                    if (typeof itemValue === "string") {
+                      return itemValue.toLowerCase().includes(parsedValue.toLowerCase());
+                    }
                     return itemValue == parsedValue;
                   case "!=":
                     return itemValue != parsedValue;
