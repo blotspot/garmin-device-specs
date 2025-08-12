@@ -1,6 +1,6 @@
 # Garmin Device Specs
 
-Last update: 2025-08-12 20:17
+Last update: 2025-08-12 19:42
 
 | Active | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
