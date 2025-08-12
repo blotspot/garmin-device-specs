@@ -211,10 +211,6 @@
               // Advanced JQ-like query
               const [, attribute, operator, value] = match;
 
-              if (!COLUMNS.includes(attribute)) {
-                return false;
-              }
-
               filteredData = allData.filter((item) => {
                 const itemValue = item[attribute];
                 if (itemValue === undefined) return false;
