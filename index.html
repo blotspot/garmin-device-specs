@@ -52,6 +52,31 @@
       th {
         background-color: #f4f4f4;
       }
+      th.sortable {
+        cursor: pointer;
+        position: relative;
+      }
+      th.sortable:hover {
+        background-color: #e9e9e9;
+      }
+      /* Arrows for sort direction */
+      th.sortable::after {
+        content: "";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin-top: -8px;
+        border: 5px solid transparent;
+        opacity: 0.3;
+      }
+      th.sortable.sort-asc::after {
+        border-bottom-color: #333;
+        opacity: 1;
+      }
+      th.sortable.sort-desc::after {
+        border-top-color: #333;
+        opacity: 1;
+      }
       tbody tr:nth-of-type(even) {
         background-color: #f9f9f9;
       }
@@ -74,11 +99,12 @@
     <div class="info-box">
       <p><b>Query Guide:</b></p>
       <ul>
-        <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>round-240x240</code>).</li>
+        <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>approachs70</code>).</li>
         <li>
           <b>Advanced Query:</b> Use the format <code>Attribute Operator Value</code> (e.g., <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>). Supported operators are
           <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>.
         </li>
+        <li><b>Sorting:</b> Click on any column header to sort the table.</li>
       </ul>
     </div>
 
@@ -137,7 +163,15 @@
         }
 
         function renderTableHeaders() {
-          tableHeaders.innerHTML = COLUMNS.map((col) => `<th>${col}</th>`).join("");
+          tableHeaders.innerHTML = ""; // Clear existing headers
+          COLUMNS.forEach((col, index) => {
+            const th = document.createElement("th");
+            th.textContent = col;
+            th.className = "sortable"; // Add class to make it look clickable
+            th.dataset.columnIndex = index; // Store column index
+            th.addEventListener("click", () => sortTableByColumn(th));
+            tableHeaders.appendChild(th);
+          });
         }
 
         function fetchData() {
@@ -262,6 +296,48 @@
               });
             });
           }
+        }
+
+        // --- SORTING FUNCTION ---
+        function sortTableByColumn(headerElement) {
+          const columnIndex = parseInt(headerElement.dataset.columnIndex, 10);
+          const currentDirection = headerElement.dataset.sortDirection || "desc";
+          const newDirection = currentDirection === "desc" ? "asc" : "desc";
+          headerElement.dataset.sortDirection = newDirection;
+
+          // Remove sorting indicators from other columns
+          tableHeaders.querySelectorAll("th").forEach((th) => {
+            th.classList.remove("sort-asc", "sort-desc");
+          });
+
+          // Add sorting indicator to the current column
+          headerElement.classList.add(newDirection === "asc" ? "sort-asc" : "sort-desc");
+
+          // Get all rows from the current view (tbody) and sort them
+          const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+          // Determine if the column is numeric by checking the first data cell
+          const isNumericColumn = !isNaN(parseFloat(rows[0]?.cells[columnIndex]?.textContent));
+
+          rows.sort((rowA, rowB) => {
+            const valA = rowA.cells[columnIndex].textContent;
+            const valB = rowB.cells[columnIndex].textContent;
+
+            let comparison = 0;
+            if (isNumericColumn) {
+              comparison = parseFloat(valA) - parseFloat(valB);
+            } else {
+              // Use localeCompare for proper string sorting
+              comparison = valA.localeCompare(valB, undefined, { sensitivity: "base" });
+            }
+
+            // Reverse the comparison if descending
+            return newDirection === "asc" ? comparison : -comparison;
+          });
+
+          // Re-append the sorted rows to the table body
+          tableBody.innerHTML = "";
+          rows.forEach((row) => tableBody.appendChild(row));
         }
 
         initialize();
