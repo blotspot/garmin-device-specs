@@ -178,12 +178,20 @@
               const [, attribute, operator, value] = match;
 
               if (!COLUMNS.includes(attribute)) {
-                throw new Error(`Attribute "${attribute}" does not exist.`);
+                return false;
               }
 
               filteredData = allData.filter((item) => {
                 const itemValue = item[attribute];
-                if (itemValue === undefined || typeof itemValue !== "number") return false;
+                if (itemValue === undefined) return false;
+                if (typeof itemValue === "number") {
+                  value = parseFloat(value);
+                  if (isNaN(value)) {
+                    return false;
+                  }
+                } else if (typeof itemValue === "boolean") {
+                  value = ["true", "1"].includes(value.toLowerCase());
+                }
 
                 switch (operator) {
                   case ">":
