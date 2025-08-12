@@ -316,20 +316,13 @@
           // Get all rows from the current view (tbody) and sort them
           const rows = Array.from(tableBody.querySelectorAll("tr"));
 
-          // Determine if the column is numeric by checking the first data cell
-          const isNumericColumn = !isNaN(parseFloat(rows[0]?.cells[columnIndex]?.textContent));
-
           rows.sort((rowA, rowB) => {
             const valA = rowA.cells[columnIndex].textContent;
             const valB = rowB.cells[columnIndex].textContent;
 
             let comparison = 0;
-            if (isNumericColumn) {
-              comparison = parseFloat(valA) - parseFloat(valB);
-            } else {
-              // Use localeCompare for proper string sorting
-              comparison = valA.localeCompare(valB, undefined, { sensitivity: "base" });
-            }
+            // Use localeCompare for proper string sorting
+            comparison = valA.localeCompare(valB, undefined, { sensitivity: "base" });
 
             // Reverse the comparison if descending
             return newDirection === "asc" ? comparison : -comparison;
