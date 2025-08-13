@@ -15,7 +15,7 @@ DETAIL_URL_TEMPLATE = (
 )
 JSON_FILENAME = "garmin_devices.json"
 MD_FILENAME = "garmin_devices.md"
-MAX_WORKERS = 10  # Number of parallel threads to fetch device details
+MAX_WORKERS = 10
 
 
 def load_from_json(filename: str) -> dict:
@@ -30,7 +30,7 @@ def load_from_json(filename: str) -> dict:
     try:
         with open(filename, "r", encoding="utf-8") as f:
             data_list = json.load(f)
-            # Convert list of dicts to a dict keyed by device 'Id' for efficient lookups
+            # Convert to dict keyed by device 'Id' for easy lookups
             return {
                 device.get("Id", ""): device for device in data_list if device.get("Id")
             }
@@ -44,7 +44,6 @@ def save_to_json(filename: str, data_dict: dict):
     Saves the device data dictionary to a JSON file.
     The data is stored as a list of device objects, sorted by name.
     """
-    # Convert the dictionary values back to a list for standard JSON array output
     data_list = sorted(list(data_dict.values()), key=lambda d: d.get("Id", ""))
     try:
         with open(filename, "w", encoding="utf-8") as f:
@@ -99,7 +98,7 @@ def parse_device_details(device_id: str) -> dict | None:
     if not article:
         return None
 
-    device_data = {"Active": True}  # Default status for new/active devices
+    device_data = {"Active": True}
     h1 = article.find("h1")
     device_data["Name"] = h1.text.strip() if h1 else device_id
 
@@ -135,7 +134,6 @@ def parse_device_details(device_id: str) -> dict | None:
 
             device_data[f"{app_type}Memory"] = memory
 
-    # Ensure the 'Id' key exists, which we use for our dictionary
     if "Id" not in device_data:
         device_data["Id"] = device_id
 
@@ -168,7 +166,6 @@ def get_api_levels() -> dict[str, str]:
         for row in table.find_all("tr"):
             cells = row.find_all("td")
             if len(cells) >= 2:
-                # First column is the name, last column is the API level
                 device_name = cells[0].text.strip()
                 api_level = cells[-1].text.strip()
 
@@ -256,7 +253,6 @@ def save_markdown_table(filename, all_devices_data: dict):
         "Buttons",
     ]
 
-    # Sort by id for consistent output
     data_list = sorted(all_devices_data.values(), key=lambda d: d.get("Id", ""))
 
     try:
@@ -302,24 +298,21 @@ def main():
     Main function to orchestrate loading, diffing, scraping, and printing.
     """
 
-    # 1. Load existing data from JSON
+    # Load existing data from JSON
     existing_devices_data = load_from_json(JSON_FILENAME)
     existing_ids = set(existing_devices_data.keys())
 
-    # 2. Get the current list of device IDs from the web
+    # Get the current list of device IDs from the web
     current_device_ids = get_device_ids()
     if not current_device_ids:
         print("FATAL: Could not fetch the master list of devices. Aborting.")
         return
 
-    # 3. Compare the lists to find what's new and what's been removed
     new_ids = current_device_ids - existing_ids
     deprecated_ids = existing_ids - current_device_ids
-
-    # This keeps a reference to the main data object
     updated_devices_data = existing_devices_data
 
-    # 4. Handle deprecated devices
+    # Handle deprecated devices
     if deprecated_ids:
         print(
             f"\nMarking {len(deprecated_ids)} device(s) as Deprecated: {', '.join(deprecated_ids)}"
@@ -328,9 +321,9 @@ def main():
             if dev_id in updated_devices_data:
                 updated_devices_data[dev_id]["Active"] = False
 
-    # 5. Fetch new devices
+    # Fetch new devices
     if new_ids:
-        # 5.1. Fetch details for new devices in parallel
+        # Fetch details
         print(f"\nFound {len(new_ids)} new device(s). Fetching details...")
         with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             results = list(
@@ -348,18 +341,17 @@ def main():
                 newly_parsed_count += 1
         print(f"Successfully parsed details for {newly_parsed_count} new device(s).")
 
-        # 5.2. Enrich data with API Levels
+        # Enrich data with API Levels
         updated_devices_data = enrich_with_api_levels(updated_devices_data)
     else:
         print("\nNo new devices found.")
 
-    # 6. Save the consolidated data back to JSON
+    # Save the data
     if new_ids or deprecated_ids:
         save_to_json(JSON_FILENAME, updated_devices_data)
     else:
         print("\nNo changes to local data file needed.")
 
-    # 7. Save the final markdown table
     save_markdown_table(MD_FILENAME, updated_devices_data)
 
 
