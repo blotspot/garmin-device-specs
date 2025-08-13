@@ -35,7 +35,7 @@
         font-size: 0.9em;
       }
       .table-container {
-        overflow-x: auto; /* Allows horizontal scrolling on small screens */
+        overflow-x: auto;
       }
       table {
         width: 100%;
@@ -47,7 +47,6 @@
         padding: 12px 15px;
         border: 1px solid #ddd;
         text-align: left;
-        white-space: nowrap; /* Prevents text wrapping */
       }
       th {
         background-color: #f4f4f4;
@@ -284,8 +283,7 @@
                 if (col == "Touch" || col == "Active") {
                   cell.textContent = item[col] ? "Yes" : "No";
                 } else {
-                  cell.textContent = item[col] ?? "";
-                  cell.innerHTML = cell.textContent.replace(/\s?[\/,]\s?/g, "<br>");
+                  cell.textContent = item[col] ?? ""
                 }
               });
             });
