@@ -13,11 +13,12 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         line-height: 1.6;
         color: #333;
+        font-size: 0.95rem;
       }
       .page-container {
         display: flex;
         flex-direction: column;
-        height: 100vh; /* Fill the entire viewport height */
+        height: 100vh;
         max-width: 95%;
         margin: 0 auto;
         padding: 20px;
@@ -25,11 +26,7 @@
       }
       h1 {
         text-align: center;
-        flex-shrink: 0;
-      }
-      .search-container {
-        margin-bottom: 20px;
-        flex-shrink: 0;
+        font-size: 1.2em;
       }
       .search-container input {
         width: 100%;
@@ -44,8 +41,14 @@
         border-left: 4px solid #55f;
         padding: 10px 15px;
         margin: 10px 0;
-        flex-shrink: 0;
         font-size: 0.9em;
+      }
+
+      #row-counter {
+        text-align: center;
+        padding-bottom: 5px;
+        font-size: 0.9em;
+        color: #555;
       }
       .table-container {
         flex-grow: 1;
@@ -114,7 +117,7 @@
   </head>
   <body>
     <div class="page-container">
-      <h1>Device Data Query</h1>
+      <h1>Garmin Device Data Query</h1>
       <p>The data was last updated on <span id="last-updated">...</span>.</p>
 
       <div class="search-container">
@@ -122,16 +125,16 @@
       </div>
 
       <div class="info-box">
-        <p><b>Query Guide:</b></p>
         <ul>
-          <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>approachs70</code>).</li>
+          <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>round</code>).</li>
           <li>
             <b>Advanced Query:</b> Use the format <code>Attribute Operator Value</code> (e.g., <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>). Supported operators are
             <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>.
           </li>
-          <li><b>Sorting:</b> Click on any column header to sort the table.</li>
         </ul>
       </div>
+
+      <div id="row-counter"></div>
 
       <div class="table-container">
         <table id="results-table">
@@ -174,10 +177,12 @@
         const tableHeaders = document.getElementById("table-headers");
         const tableBody = document.getElementById("table-body");
         const lastUpdatedSpan = document.getElementById("last-updated");
-        const initialStatus = document.getElementById("initial-status");
+        const rowCounter = document.getElementById("row-counter");
 
         let allData = [];
         let visibleData = [];
+        let sortingColumn = null;
+        let currentDirection = null;
 
         // --- INITIALIZATION ---
         function initialize() {
@@ -187,14 +192,18 @@
 
         function renderTableHeaders() {
           tableHeaders.innerHTML = "";
-          initialStatus.querySelector("td").colSpan = COLUMNS.length;
+          document.getElementById("initial-status").querySelector("td").colSpan = COLUMNS.length;
 
           COLUMNS.forEach((col, index) => {
             const th = document.createElement("th");
             th.textContent = col;
             th.className = "sortable"; // Add class to make it look clickable
             th.dataset.columnIndex = index; // Store column index
-            th.addEventListener("click", () => sortTableByColumn(th));
+            th.addEventListener("click", () => {
+              toggleSortDirection(th);
+              sortTableByColumn(th);
+              renderTableRows(visibleData);
+            });
             tableHeaders.appendChild(th);
           });
         }
@@ -210,7 +219,12 @@
             .then((data) => {
               allData = Array.isArray(data) ? data : [];
               allData = allData.filter((item) => item && item.Active);
-              renderTableRows(allData);
+              visibleData = [...allData]; // Start with all data visible
+              const query = searchInput.value.trim();
+              if (query) {
+                filterData(query);
+              }
+              renderTableRows(visibleData);
             })
             .catch((error) => {
               console.error("Error fetching data:", error);
@@ -221,63 +235,78 @@
         // --- EVENT HANDLING ---
         searchInput.addEventListener("input", () => {
           const query = searchInput.value.trim();
-          filterAndRender(query);
+          filterData(query);
+          sortTableByColumn(sortingColumn || tableHeaders.firstElementChild);
+          renderTableRows(visibleData);
         });
 
-        // --- CORE LOGIC ---
-        function filterAndRender(query) {
-          let filteredData = [];
-          // Regex to parse "Attribute Operator Value" queries, e.g., "Memory >= 256000"
+        // --- FILTER LOGIC ---
+        function evaluateCondition(item, condition) {
+          const [attribute, operator, value] = condition;
+
+          if (value === undefined) {
+            return true;
+          } else if (attribute === null && operator === null) {
+            // If no attribute is specified, check if the value is in any field
+            return Object.values(item).some((val) => String(val).toLowerCase().includes(value.toLowerCase()));
+          } else {
+            const itemValue = item[attribute];
+            if (itemValue === undefined) {
+              return false;
+            }
+            var parsedValue = value;
+            if (attribute.endsWith("Memory")) {
+              parsedValue = parseFloat(value);
+              if (isNaN(value)) {
+                return false;
+              }
+            } else if (typeof itemValue === "boolean") {
+              parsedValue = ["true", "1"].includes(value?.toLowerCase());
+            }
+
+            switch (operator) {
+              case ">":
+                return itemValue > parsedValue;
+              case ">=":
+                return itemValue >= parsedValue;
+              case "<":
+                return itemValue < parsedValue;
+              case "<=":
+                return itemValue <= parsedValue;
+              case "=":
+              case "==":
+                return itemValue == parsedValue;
+              case "!=":
+                return itemValue != parsedValue;
+              default:
+                return false;
+            }
+          }
+        }
+
+        function filterData(query) {
           const advancedQueryRegex = /^(\w+)\s*([><!=]=?)\s*"?\s*([-_\d\w\s\.]+)?\s*"?\s*$/;
+          const separatorRegex = /\s+(?:AND|&&)\s+/i;
           const match = query.match(advancedQueryRegex);
 
           try {
-            if (match) {
-              // Advanced JQ-like query
+            const parts = query.split(separatorRegex);
+            const conditions = parts.map((part) => {
+              const trimmedPart = part.trim();
+              const match = trimmedPart.match(advancedQueryRegex);
+              if (!match) {
+                return [null, null, trimmedPart];
+              }
               const [, attribute, operator, value] = match;
+              return [attribute, operator, value];
+            });
 
-              filteredData = allData.filter((item) => {
-                const itemValue = item[attribute];
-                if (itemValue === undefined) return false;
-                var parsedValue = value;
-                if (typeof itemValue === "number") {
-                  parsedValue = parseFloat(value);
-                  if (isNaN(value)) {
-                    return false;
-                  }
-                } else if (typeof itemValue === "boolean") {
-                  parsedValue = ["true", "1"].includes(value?.toLowerCase());
-                }
+            // Filter data: item must satisfy EVERY condition.
+            visibleData = allData.filter((item) => {
+              return conditions.every((cond) => evaluateCondition(item, cond));
+            });
 
-                switch (operator) {
-                  case ">":
-                    return itemValue > parsedValue;
-                  case ">=":
-                    return itemValue >= parsedValue;
-                  case "<":
-                    return itemValue < parsedValue;
-                  case "<=":
-                    return itemValue <= parsedValue;
-                  case "=":
-                  case "==":
-                    return itemValue == parsedValue;
-                  case "!=":
-                    return itemValue != parsedValue;
-                  default:
-                    return false;
-                }
-              });
-            } else if (query) {
-              // Simple text search
-              const lowerCaseQuery = query.toLowerCase();
-              filteredData = allData.filter((item) => {
-                return Object.values(item).some((val) => String(val).toLowerCase().includes(lowerCaseQuery));
-              });
-            } else {
-              // No query, show all data
-              filteredData = allData;
-            }
-            renderTableRows(filteredData);
+            sortTableByColumn(sortingColumn || tableHeaders.firstElementChild);
           } catch (error) {
             console.error("Error fetching data:", error);
             renderStatus("Error processing query. Please check the console for details.", true);
@@ -299,10 +328,18 @@
           visibleData = data;
 
           if (data.length === 0 && searchInput.value) {
+            rowCounter.display = "none";
             renderStatus("No results found for your query.");
           } else if (data.length === 0) {
+            rowCounter.display = "none";
             renderStatus("No data available.");
           } else {
+            rowCounter.display = "block";
+            if (data.length < allData.length) {
+              rowCounter.textContent = `Showing ${data.length} of ${allData.length} entries`;
+            } else {
+              rowCounter.textContent = `Showing ${data.length} entries`;
+            }
             data.forEach((item) => {
               const row = tableBody.insertRow();
               COLUMNS.forEach((col) => {
@@ -322,17 +359,6 @@
         // --- SORTING FUNCTION ---
         function sortTableByColumn(headerElement) {
           const columnIndex = parseInt(headerElement.dataset.columnIndex, 10);
-          const currentDirection = headerElement.dataset.sortDirection || "desc";
-          const newDirection = currentDirection === "desc" ? "asc" : "desc";
-          headerElement.dataset.sortDirection = newDirection;
-
-          // Remove sorting indicators from other columns
-          tableHeaders.querySelectorAll("th").forEach((th) => {
-            th.classList.remove("sort-asc", "sort-desc");
-          });
-
-          // Add sorting indicator to the current column
-          headerElement.classList.add(newDirection === "asc" ? "sort-asc" : "sort-desc");
 
           visibleData.sort((a, b) => {
             const column = COLUMNS[columnIndex];
@@ -346,9 +372,27 @@
               comparison = String(valA).localeCompare(String(valB), undefined, { sensitivity: "base" });
             }
 
-            return newDirection === "asc" ? comparison : -comparison;
+            return currentDirection === "asc" ? comparison : -comparison;
           });
-          renderTableRows(visibleData);
+        }
+
+        function toggleSortDirection(headerElement) {
+          // set new sorting column and direction
+          if (sortingColumn === headerElement) {
+            currentDirection = currentDirection === "asc" ? "desc" : "asc";
+          } else {
+            sortingColumn = headerElement;
+            currentDirection = headerElement.dataset.sortDirection || "asc";
+          }
+          headerElement.dataset.sortDirection = currentDirection;
+
+          // Remove sorting indicators from other columns
+          tableHeaders.querySelectorAll("th").forEach((th) => {
+            th.classList.remove("sort-asc", "sort-desc");
+          });
+
+          // Add sorting indicator to the current column
+          headerElement.classList.add(currentDirection === "asc" ? "sort-asc" : "sort-desc");
         }
 
         initialize();
