@@ -5,19 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Data Query</title>
     <style>
+      html,
       body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* Prevent the body itself from scrolling */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         line-height: 1.6;
         color: #333;
+      }
+      .page-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Fill the entire viewport height */
         max-width: 95%;
         margin: 0 auto;
         padding: 20px;
+        box-sizing: border-box;
       }
       h1 {
         text-align: center;
+        flex-shrink: 0;
       }
       .search-container {
         margin-bottom: 20px;
+        flex-shrink: 0;
       }
       .search-container input {
         width: 100%;
@@ -31,34 +43,41 @@
         background-color: #eef;
         border-left: 4px solid #55f;
         padding: 10px 15px;
-        margin: 15px 0;
+        margin: 10px 0;
+        flex-shrink: 0;
         font-size: 0.9em;
       }
       .table-container {
+        flex-grow: 1;
+        overflow-y: auto;
         overflow-x: auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
       }
       table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 20px;
       }
-      th,
       td {
         padding: 12px 15px;
         border: 1px solid #ddd;
-        text-align: left;
       }
       th {
+        padding: 12px 15px;
+        text-align: left;
+        white-space: nowrap;
+        position: sticky;
+        top: 0;
         background-color: #f4f4f4;
+        border-bottom: 2px solid #ccc;
+        z-index: 1;
       }
       th.sortable {
         cursor: pointer;
-        position: relative;
       }
       th.sortable:hover {
         background-color: #e9e9e9;
       }
-      /* Arrows for sort direction */
       th.sortable::after {
         content: "";
         position: absolute;
@@ -80,55 +99,60 @@
         background-color: #f9f9f9;
       }
       .status {
-        text-align: center;
+        text-align: left;
         color: #888;
-        font-size: 18px;
-        padding: 20px;
+        padding: 10px 15px;
+        margin: 10px 0;
+        font-size: 0.9em;
+        border: 0;
+      }
+      .status:has(.error) {
+        color: #333;
+        background-color: #fee;
       }
     </style>
   </head>
   <body>
-    <h1>Device Data Query</h1>
-    <p>The data was last updated on <span id="last-updated">...</span>.</p>
+    <div class="page-container">
+      <h1>Device Data Query</h1>
+      <p>The data was last updated on <span id="last-updated">...</span>.</p>
 
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search for text or use an advanced query..." />
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for text or use an advanced query..." />
+      </div>
+
+      <div class="info-box">
+        <p><b>Query Guide:</b></p>
+        <ul>
+          <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>approachs70</code>).</li>
+          <li>
+            <b>Advanced Query:</b> Use the format <code>Attribute Operator Value</code> (e.g., <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>). Supported operators are
+            <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>.
+          </li>
+          <li><b>Sorting:</b> Click on any column header to sort the table.</li>
+        </ul>
+      </div>
+
+      <div class="table-container">
+        <table id="results-table">
+          <thead>
+            <tr id="table-headers"></tr>
+          </thead>
+          <tbody id="table-body">
+            <tr id="initial-status">
+              <td class="status"><div>Loading data...</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    <div class="info-box">
-      <p><b>Query Guide:</b></p>
-      <ul>
-        <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>approachs70</code>).</li>
-        <li>
-          <b>Advanced Query:</b> Use the format <code>Attribute Operator Value</code> (e.g., <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>). Supported operators are
-          <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>.
-        </li>
-        <li><b>Sorting:</b> Click on any column header to sort the table.</li>
-      </ul>
-    </div>
-
-    <div id="query-status" class="status" style="display: none"></div>
-
-    <div class="table-container">
-      <table id="results-table">
-        <thead>
-          <tr id="table-headers">
-            <!-- Headers will be dynamically generated by JavaScript -->
-          </tr>
-        </thead>
-        <tbody id="table-body">
-          <!-- Data rows will be dynamically generated here -->
-        </tbody>
-      </table>
-    </div>
-    <div id="initial-status" class="status">Loading data...</div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // --- CONFIGURATION ---
         const JSON_URL = "garmin_devices.json";
         const COLUMNS = [
-          "Active",
+          "Date",
           "Name",
           "Id",
           "ScreenShape",
@@ -151,9 +175,9 @@
         const tableBody = document.getElementById("table-body");
         const lastUpdatedSpan = document.getElementById("last-updated");
         const initialStatus = document.getElementById("initial-status");
-        const queryStatus = document.getElementById("query-status");
 
         let allData = [];
+        let visibleData = [];
 
         // --- INITIALIZATION ---
         function initialize() {
@@ -162,7 +186,9 @@
         }
 
         function renderTableHeaders() {
-          tableHeaders.innerHTML = ""; // Clear existing headers
+          tableHeaders.innerHTML = "";
+          initialStatus.querySelector("td").colSpan = COLUMNS.length;
+
           COLUMNS.forEach((col, index) => {
             const th = document.createElement("th");
             th.textContent = col;
@@ -183,12 +209,12 @@
             })
             .then((data) => {
               allData = Array.isArray(data) ? data : [];
-              initialStatus.style.display = "none";
+              allData = allData.filter((item) => item && item.Active);
               renderTableRows(allData);
             })
             .catch((error) => {
               console.error("Error fetching data:", error);
-              initialStatus.innerHTML = `<p class="error">Could not load data. Please check the console for details.</p>`;
+              renderStatus("Could not load data. Please check the console for details.", true);
             });
         }
 
@@ -220,7 +246,7 @@
                     return false;
                   }
                 } else if (typeof itemValue === "boolean") {
-                  parsedValue = ["true", "1"].includes(value.toLowerCase());
+                  parsedValue = ["true", "1"].includes(value?.toLowerCase());
                 }
 
                 switch (operator) {
@@ -251,30 +277,31 @@
               // No query, show all data
               filteredData = allData;
             }
-            queryStatus.style.display = "none";
             renderTableRows(filteredData);
-          } catch (e) {
-            queryStatus.textContent = `Error: ${e.message}`;
-            queryStatus.style.display = "block";
-            renderTableRows([]); // Clear table on error
+          } catch (error) {
+            console.error("Error fetching data:", error);
+            renderStatus("Error processing query. Please check the console for details.", true);
           }
+        }
+
+        function renderStatus(message, error = false) {
+          tableBody.innerHTML = "";
+          visibleData = [];
+          const row = tableBody.insertRow();
+          const cell = row.insertCell();
+          cell.colSpan = COLUMNS.length;
+          cell.className = "status";
+          cell.innerHTML = `<p class="${error ? "error" : ""}">${message}</p>`;
         }
 
         function renderTableRows(data) {
           tableBody.innerHTML = "";
+          visibleData = data;
 
           if (data.length === 0 && searchInput.value) {
-            const row = tableBody.insertRow();
-            const cell = row.insertCell();
-            cell.colSpan = COLUMNS.length;
-            cell.className = "status";
-            cell.textContent = "No results found for your query.";
+            renderStatus("No results found for your query.");
           } else if (data.length === 0) {
-            const row = tableBody.insertRow();
-            const cell = row.insertCell();
-            cell.colSpan = COLUMNS.length;
-            cell.className = "status";
-            cell.textContent = "No data available.";
+            renderStatus("No data available.");
           } else {
             data.forEach((item) => {
               const row = tableBody.insertRow();
@@ -282,8 +309,10 @@
                 const cell = row.insertCell();
                 if (col == "Touch" || col == "Active") {
                   cell.textContent = item[col] ? "Yes" : "No";
+                } else if (col == "Date") {
+                  cell.textContent = new Date(item[col]).toLocaleDateString();
                 } else {
-                  cell.textContent = item[col] ?? ""
+                  cell.textContent = item[col] ?? "";
                 }
               });
             });
@@ -305,24 +334,21 @@
           // Add sorting indicator to the current column
           headerElement.classList.add(newDirection === "asc" ? "sort-asc" : "sort-desc");
 
-          // Get all rows from the current view (tbody) and sort them
-          const rows = Array.from(tableBody.querySelectorAll("tr"));
-
-          rows.sort((rowA, rowB) => {
-            const valA = rowA.cells[columnIndex].textContent;
-            const valB = rowB.cells[columnIndex].textContent;
+          visibleData.sort((a, b) => {
+            const column = COLUMNS[columnIndex];
+            const valA = a[column];
+            const valB = b[column];
 
             let comparison = 0;
-            // Use localeCompare for proper string sorting
-            comparison = valA.localeCompare(valB, undefined, { sensitivity: "base" });
+            if (column.endsWith("Memory")) {
+              comparison = (valA ?? 0) - (valB ?? 0);
+            } else {
+              comparison = String(valA).localeCompare(String(valB), undefined, { sensitivity: "base" });
+            }
 
-            // Reverse the comparison if descending
             return newDirection === "asc" ? comparison : -comparison;
           });
-
-          // Re-append the sorted rows to the table body
-          tableBody.innerHTML = "";
-          rows.forEach((row) => tableBody.appendChild(row));
+          renderTableRows(visibleData);
         }
 
         initialize();

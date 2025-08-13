@@ -16,6 +16,9 @@ DETAIL_URL_TEMPLATE = (
 JSON_FILENAME = "garmin_devices.json"
 MD_FILENAME = "garmin_devices.md"
 MAX_WORKERS = 10
+CURRENT_DATE = datetime.datetime.now(datetime.timezone.utc).isoformat(
+    timespec="seconds"
+)
 
 
 def load_from_json(filename: str) -> dict:
@@ -98,9 +101,12 @@ def parse_device_details(device_id: str) -> dict | None:
     if not article:
         return None
 
-    device_data = {"Active": True}
-    h1 = article.find("h1")
-    device_data["Name"] = h1.text.strip() if h1 else device_id
+    device_data = {
+        "Active": True,
+        "Id": device_id,
+        "Date": CURRENT_DATE,
+        "Name": h1.text.strip() if (h1 := article.find("h1")) else device_id,
+    }
 
     tables = article.find_all("table")
     if len(tables) < 2:
@@ -133,9 +139,6 @@ def parse_device_details(device_id: str) -> dict | None:
                 memory = 0
 
             device_data[f"{app_type}Memory"] = memory
-
-    if "Id" not in device_data:
-        device_data["Id"] = device_id
 
     return device_data
 
@@ -227,7 +230,7 @@ def format_memory(bytes_val: int) -> str:
         return f"{kilobytes} KB"
 
 
-def save_markdown_table(filename, all_devices_data: dict):
+def save_markdown_table(filename, all_devices_data: dict, new_ids: set):
     """
     Prints a dictionary of device data as a formatted Markdown table.
     """
@@ -237,6 +240,7 @@ def save_markdown_table(filename, all_devices_data: dict):
 
     headers = [
         "Active",
+        "Date",
         "Name",
         "Id",
         "ScreenShape",
@@ -253,14 +257,23 @@ def save_markdown_table(filename, all_devices_data: dict):
         "Buttons",
     ]
 
-    data_list = sorted(all_devices_data.values(), key=lambda d: d.get("Id", ""))
+    data_list = sorted(
+        all_devices_data.values(),
+        key=lambda d: (d["Id"]),
+    )
+    data_list.sort(key=lambda d: (d["Date"], d["APILevel"]), reverse=True)
 
     try:
         with open(filename, "w", encoding="utf-8") as f:
             f.write("# Garmin Device Specs\n\n")
 
-            now = datetime.datetime.now()
-            f.write(f"Last update: {now.strftime("%Y-%m-%d %H:%M")}\n\n")
+            f.write(f"Last update: {CURRENT_DATE}\n\n")
+
+            if new_ids and len(new_ids) < len(all_devices_data):
+                f.write(
+                    f"> [!IMPORTANT]\n"
+                    f"> New device IDs: {', '.join(sorted(new_ids))}\n\n"
+                )
 
             f.write(f"| {' | '.join(headers)} |\n")
             f.write(f"| {'|'.join(['---'] * len(headers))}|\n")
@@ -349,9 +362,10 @@ def main():
     # Save the data
     if new_ids or deprecated_ids:
         save_to_json(JSON_FILENAME, updated_devices_data)
-        save_markdown_table(MD_FILENAME, updated_devices_data)
+        save_markdown_table(MD_FILENAME, updated_devices_data, new_ids)
     else:
         print("\nNo changes to local data file needed.")
+
 
 if __name__ == "__main__":
     main()
