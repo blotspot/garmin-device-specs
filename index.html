@@ -212,8 +212,12 @@
           fetch(JSON_URL)
             .then((response) => {
               if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-              const lastModified = response.headers.get("last-modified");
-              if (lastModified) lastUpdatedSpan.textContent = new Date(lastModified).toUTCString();
+              const lastModified = new Date(response.headers.get("last-modified"));
+              if (lastModified) {
+                lastUpdatedSpan.textContent = `${lastModified.toLocaleDateString()} at ${lastModified.toLocaleTimeString()}`;
+              } else {
+                lastUpdatedSpan.display = "none";
+              }
               return response.json();
             })
             .then((data) => {
@@ -256,7 +260,7 @@
             }
             var parsedValue = value;
             if (attribute.endsWith("Memory")) {
-              parsedValue = parseFloat(value);
+              parsedValue = parseInt(value);
               if (isNaN(value)) {
                 return false;
               }
@@ -348,6 +352,15 @@
                   cell.textContent = item[col] ? "Yes" : "No";
                 } else if (col == "Date") {
                   cell.textContent = new Date(item[col]).toLocaleDateString();
+                } else if (col.endsWith("Memory")) {
+                  const memoryValue = parseInt(item[col], 10);
+                  if (!isNaN(memoryValue)) {
+                    if (memoryValue >= 1024 * 1024) {
+                      cell.textContent = (memoryValue / (1024 * 1024)).toFixed(2).toLocaleString() + " MB";
+                    } else {
+                      cell.textContent = (memoryValue / 1024).toFixed(0).toLocaleString() + " KB";
+                    }
+                  }
                 } else {
                   cell.textContent = item[col] ?? "";
                 }
