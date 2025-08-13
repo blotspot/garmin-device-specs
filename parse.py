@@ -349,11 +349,9 @@ def main():
     # Save the data
     if new_ids or deprecated_ids:
         save_to_json(JSON_FILENAME, updated_devices_data)
+        save_markdown_table(MD_FILENAME, updated_devices_data)
     else:
         print("\nNo changes to local data file needed.")
-
-    save_markdown_table(MD_FILENAME, updated_devices_data)
-
 
 if __name__ == "__main__":
     main()
