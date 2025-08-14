@@ -9,7 +9,7 @@
       body {
         height: 100%;
         margin: 0;
-        overflow: hidden; /* Prevent the body itself from scrolling */
+        overflow: hidden;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         line-height: 1.6;
         color: #333;
@@ -129,8 +129,9 @@
           <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>round</code>).</li>
           <li>
             <b>Advanced Query:</b> Use the format <code>Attribute Operator Value</code> (e.g., <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>). Supported operators are
-            <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>.
+            <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>. Concatenate several queries with <code>&&</code> or <code>AND</code>.
           </li>
+          <li><b>Example:</b> <code>WatchFaceMemory > 0 && APILevel >= 3.1 && ScreenHeight >= 218 && round</code></li>
         </ul>
       </div>
 
