@@ -1,9 +1,14 @@
 # Garmin Device Specs
 
-Last update: 2025-08-13T19:00:01+00:00
+Last update: 2025-09-04T01:43:01+00:00
+
+> [!IMPORTANT]
+> New device IDs: fenix8pro47mm, gpsmaph1
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | fēnix® 8 Pro 47mm / 51mm / MicroLED | fenix8pro47mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | GPSMAP® H1 / H1i Plus | gpsmaph1 | rectangle | 282 x 470 | 5.0 |  | 32 KB | 128 KB |  | 2.2 MB |  | 2.2 MB | :heavy_check_mark: | upLeft, up, upRight, left, right, downLeft, down, downRight, zin, zout, find, page, menu, esc, enter |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S50 | approachs50 | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S70 42mm | approachs7042mm | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S70 47mm | approachs7047mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
