@@ -1,12 +1,14 @@
 # Garmin Device Specs
 
-Last update: 2025-09-04T01:43:01+00:00
+Last update: 2025-09-11T01:46:22+00:00
 
 > [!IMPORTANT]
-> New device IDs: fenix8pro47mm, gpsmaph1
+> New device IDs: edge550, edge850
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 550 | edge550 | rectangle | 420 x 600 | 5.1 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 850 | edge850 | rectangle | 420 x 600 | 5.1 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | fēnix® 8 Pro 47mm / 51mm / MicroLED | fenix8pro47mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | GPSMAP® H1 / H1i Plus | gpsmaph1 | rectangle | 282 x 470 | 5.0 |  | 32 KB | 128 KB |  | 2.2 MB |  | 2.2 MB | :heavy_check_mark: | upLeft, up, upRight, left, right, downLeft, down, downRight, zin, zout, find, page, menu, esc, enter |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S50 | approachs50 | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
