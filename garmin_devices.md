@@ -1,12 +1,15 @@
 # Garmin Device Specs
 
-Last update: 2025-09-11T01:46:22+00:00
+Last update: 2025-09-18T01:43:14+00:00
 
 > [!IMPORTANT]
-> New device IDs: edge550, edge850
+> New device IDs: instinctcrossoveramoled, venu441mm, venu445mm
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Instinct® Crossover AMOLED | instinctcrossoveramoled | round | 390 x 390 | 5.1 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 41mm | venu441mm | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
+|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 45mm | venu445mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 550 | edge550 | rectangle | 420 x 600 | 5.1 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 850 | edge850 | rectangle | 420 x 600 | 5.1 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | fēnix® 8 Pro 47mm / 51mm / MicroLED | fenix8pro47mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
