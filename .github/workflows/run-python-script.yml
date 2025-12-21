@@ -29,6 +29,8 @@ jobs:
           python parse.py
 
       - name: Commit and Push Changes
+        with:
+          github_token: ${{ secrets.REPO_PAT}}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
