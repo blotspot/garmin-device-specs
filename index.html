@@ -18,7 +18,7 @@
         flex-direction: column;
         max-width: 95%;
         margin: 0 auto;
-        padding: 1em;
+        padding: 0.3em;
       }
       .page-container > p {
         position: absolute;
@@ -34,7 +34,7 @@
       }
       .search-container {
         position: sticky;
-        top: 1em;
+        top: 0.3em;
         z-index: 100;
       }
       .search-container input {
@@ -48,14 +48,13 @@
       .info-box {
         background-color: #eef;
         border-left: 4px solid #55f;
-        padding: 10px 15px;
+        padding: 0.3em 0.5em;
         margin: 10px 0;
         font-size: 0.9em;
       }
 
       #row-counter {
         text-align: center;
-        padding-bottom: 5px;
         font-size: 0.85em;
         color: #555;
       }
@@ -65,18 +64,19 @@
         overflow-x: auto;
         border: 1px solid #ddd;
         border-radius: 5px;
-        width: 90vh;
+        height: 89vh;
+        margin-top: 1em;
       }
       table {
         width: 100%;
         border-collapse: collapse;
       }
       td {
-        padding: 12px 15px;
+        padding: 0.3em 0.5em;
         border: 1px solid #ddd;
       }
       th {
-        padding: 12px 15px;
+        padding: 0.3em 0.5em;
         text-align: left;
         white-space: nowrap;
         position: sticky;
@@ -128,7 +128,7 @@
   <body>
     <div class="page-container">
       <h1>Garmin Device Data Query</h1>
-      <p>The data was last updated on <span id="last-updated">...</span>.</p>
+      <p>Last update: <span id="last-updated">...</span>.</p>
 
       <div class="info-box">
         <ul>
