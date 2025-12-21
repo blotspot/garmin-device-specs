@@ -108,6 +108,19 @@
         border-top-color: #333;
         opacity: 1;
       }
+      /* small copy button inside table headers */
+      .copy-btn {
+        margin-left: 8px;
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background: #fff;
+        border-radius: 4px;
+      }
+      .copy-btn:active {
+        transform: translateY(1px);
+      }
       tbody tr:nth-of-type(even) {
         background-color: #f9f9f9;
       }
@@ -210,13 +223,88 @@
             th.textContent = col;
             th.className = "sortable"; // Add class to make it look clickable
             th.dataset.columnIndex = index; // Store column index
+
+            // Sorting when header (excluding the copy button) is clicked
             th.addEventListener("click", () => {
               toggleSortDirection(th);
               sortTableByColumn(th);
               renderTableRows(visibleData);
             });
+            if (col === "Id") {
+              // Add a small copy button to copy all visible values in this column
+              const copyBtn = document.createElement("button");
+              copyBtn.type = "button";
+              copyBtn.className = "copy-btn";
+              copyBtn.title = "Copy column values for current filter";
+              copyBtn.textContent = "Copy";
+              // Prevent the header click (sorting) when pressing the copy button
+              copyBtn.addEventListener("click", (ev) => {
+                ev.stopPropagation();
+                copyColumnValues(index, copyBtn);
+              });
+
+              // Place the button inside the header
+              th.appendChild(copyBtn);
+            }
             tableHeaders.appendChild(th);
           });
+        }
+
+        // Helper to format values exactly like rendering in the table
+        function formatValue(item, col) {
+          if (col == "Touch" || col == "Active") {
+            return item[col] ? "Yes" : "No";
+          } else if (col == "Date") {
+            try {
+              return new Date(item[col]).toLocaleDateString();
+            } catch (e) {
+              return "";
+            }
+          } else if (col.endsWith("Memory")) {
+            const memoryValue = parseInt(item[col], 10);
+            if (!isNaN(memoryValue)) {
+              if (memoryValue >= 1024 * 1024) {
+                return (memoryValue / (1024 * 1024)).toFixed(2).toLocaleString() + " MB";
+              } else {
+                return (memoryValue / 1024).toFixed(0).toLocaleString() + " KB";
+              }
+            }
+            return "";
+          } else {
+            return item[col] ?? "";
+          }
+        }
+
+        // Copy all visible values for a column (respecting current filter)
+        function copyColumnValues(columnIndex, btnElement) {
+          try {
+            const column = COLUMNS[columnIndex];
+            const lines = visibleData.map((item) => formatValue(item, column));
+            const text = lines.join("\n");
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(() => {
+                const original = btnElement.textContent;
+              });
+            } else {
+              // Fallback for older browsers
+              const ta = document.createElement("textarea");
+              ta.value = text;
+              document.body.appendChild(ta);
+              ta.select();
+              try {
+                document.execCommand("copy");
+                const original = btnElement.textContent;
+              } catch (e) {
+                console.error("Copy failed", e);
+                renderStatus("Copy to clipboard failed.");
+              }
+              document.body.removeChild(ta);
+            }
+          } catch (e) {
+            console.error("Error copying column values:", e);
+            renderStatus("Error copying values. See console for details.");
+          }
         }
 
         function fetchData() {
@@ -359,22 +447,7 @@
               const row = tableBody.insertRow();
               COLUMNS.forEach((col) => {
                 const cell = row.insertCell();
-                if (col == "Touch" || col == "Active") {
-                  cell.textContent = item[col] ? "Yes" : "No";
-                } else if (col == "Date") {
-                  cell.textContent = new Date(item[col]).toLocaleDateString();
-                } else if (col.endsWith("Memory")) {
-                  const memoryValue = parseInt(item[col], 10);
-                  if (!isNaN(memoryValue)) {
-                    if (memoryValue >= 1024 * 1024) {
-                      cell.textContent = (memoryValue / (1024 * 1024)).toFixed(2).toLocaleString() + " MB";
-                    } else {
-                      cell.textContent = (memoryValue / 1024).toFixed(0).toLocaleString() + " KB";
-                    }
-                  }
-                } else {
-                  cell.textContent = item[col] ?? "";
-                }
+                cell.textContent = formatValue(item, col);
               });
             });
           }
