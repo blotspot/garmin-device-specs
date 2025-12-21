@@ -29,8 +29,7 @@ jobs:
           python parse.py
 
       - name: Commit and Push Changes
-        with:
-          github_token: ${{ secrets.REPO_PAT}}
+        id: push_and_signal
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -38,7 +37,22 @@ jobs:
 
           if git diff --staged --quiet; then
             echo "No changes to commit."
+            echo "pushed=false" >> $GITHUB_OUTPUT
           else
             git commit -m "Automated daily data generation"
             git push
+            echo "pushed=true" >> $GITHUB_OUTPUT
           fi
+
+      - name: Trigger Pages Deploy
+        if: steps.push_and_signal.outputs.pushed == 'true'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: "deploy-static",
+              client_payload: { source: "daily-generator" }
+            })
