@@ -4,6 +4,7 @@ name: Deploy static content to Pages
 on:
   repository_dispatch:
     types: ["deploy-static"]
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
