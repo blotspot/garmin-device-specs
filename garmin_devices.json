@@ -315,6 +315,28 @@
     },
     {
         "Active": true,
+        "Id": "d2mach2pro",
+        "Date": "2026-04-19T15:28:36+00:00",
+        "Name": "D2™ Mach 2 Pro",
+        "ScreenShape": "round",
+        "ScreenSize": "454 x 454",
+        "ScreenWidth": "454",
+        "ScreenHeight": "454",
+        "DisplayColors": "65536",
+        "Touch": true,
+        "Buttons": "enter, up, menu, down, esc",
+        "LauncherIconSize": "65 x 65",
+        "AudioContentProviderMemory": 524288,
+        "BackgroundMemory": 65536,
+        "DataFieldMemory": 131072,
+        "GlanceMemory": 65536,
+        "WatchAppMemory": 786432,
+        "WatchFaceMemory": 131072,
+        "WidgetMemory": 786432,
+        "APILevel": "6.0"
+    },
+    {
+        "Active": true,
         "Id": "descentg1",
         "Date": "2025-08-13T18:16:01+00:00",
         "Name": "Descent™ G1 / G1 Solar",
@@ -538,7 +560,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -558,7 +580,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -650,7 +672,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -670,7 +692,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -728,7 +750,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -748,7 +770,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -845,7 +867,7 @@
         "GlanceMemory": 65536,
         "WatchAppMemory": 1048576,
         "WidgetMemory": 1048576,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -888,7 +910,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1479,7 +1501,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1501,7 +1523,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1545,7 +1567,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1567,7 +1589,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1609,7 +1631,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1922,7 +1944,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -1944,7 +1966,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -2195,7 +2217,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -3011,7 +3033,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -3160,7 +3182,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,
@@ -3347,7 +3369,7 @@
         "WatchAppMemory": 786432,
         "WatchFaceMemory": 131072,
         "WidgetMemory": 786432,
-        "APILevel": "5.2"
+        "APILevel": "6.0"
     },
     {
         "Active": true,

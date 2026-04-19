@@ -1,28 +1,39 @@
 # Garmin Device Specs
 
-Last update: 2025-10-24T01:44:46+00:00
+Last update: 2026-04-19T15:28:36+00:00
 
 > [!IMPORTANT]
-> New device IDs: d2mach2
+> New device IDs: d2mach2pro
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2026-04-19T15:28:36+00:00 | D2™ Mach 2 Pro | d2mach2pro | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-10-24T01:44:46+00:00 | D2™ Mach 2 | d2mach2 | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-10-01T01:55:59+00:00 | eTrex® Touch | etrextouch | rectangle | 240 x 400 | 5.1 |  | 32 KB | 128 KB |  | 2.2 MB |  | 1.0 MB | :heavy_check_mark: |  |
-|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 41mm | venu441mm | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
+|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 41mm | venu441mm | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 45mm | venu445mm | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Instinct® Crossover AMOLED | instinctcrossoveramoled | round | 390 x 390 | 5.1 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 550 | edge550 | rectangle | 420 x 600 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
-|:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 850 | edge850 | rectangle | 420 x 600 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 550 | edge550 | rectangle | 420 x 600 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 850 | edge850 | rectangle | 420 x 600 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | fēnix® 8 Pro 47mm / 51mm / MicroLED | fenix8pro47mm | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | GPSMAP® H1 / H1i Plus | gpsmaph1 | rectangle | 282 x 470 | 5.0 |  | 32 KB | 128 KB |  | 2.2 MB |  | 2.2 MB | :heavy_check_mark: | upLeft, up, upRight, left, right, downLeft, down, downRight, zin, zout, find, page, menu, esc, enter |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 1040 / 1040 Solar | edge1040 | rectangle | 282 x 470 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | start, lap |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 1050 | edge1050 | rectangle | 480 x 800 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | start, lap |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 540 / 540 Solar | edge540 | rectangle | 246 x 322 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 840 / 840 Solar | edge840 | rectangle | 246 x 322 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® MTB | edgemtb | rectangle | 240 x 320 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Enduro™ 3 | enduro3 | round | 280 x 280 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 43mm | fenix843mm | round | 416 x 416 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 47mm / 51mm / tactix® 8 47mm / 51mm / quatix® 8 47mm / 51mm | fenix847mm | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 Solar 47mm | fenix8solar47mm | round | 260 x 260 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 Solar 51mm / tactix® 8 Solar 51mm | fenix8solar51mm | round | 280 x 280 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® E | fenixe | round | 416 x 416 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 570 42mm | fr57042mm | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 570 47mm | fr57047mm | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 970 | fr970 | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® X1 | venux1 | rectangle | 448 x 486 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | vívoactive® 6 | vivoactive6 | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | D2™ Mach 1 | d2mach1 | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 1040 / 1040 Solar | edge1040 | rectangle | 282 x 470 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | start, lap |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 1050 | edge1050 | rectangle | 480 x 800 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | start, lap |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 540 / 540 Solar | edge540 | rectangle | 246 x 322 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® 840 / 840 Solar | edge840 | rectangle | 246 x 322 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® MTB | edgemtb | rectangle | 240 x 320 | 5.2 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Enduro™ 3 | enduro3 | round | 280 x 280 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | epix™ (Gen 2) / quatix® 7 Sapphire | epix2 | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | epix™ Pro (Gen 2) 42mm | epix2pro42mm | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | epix™ Pro (Gen 2) 47mm / quatix® 7 Pro | epix2pro47mm | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
@@ -35,11 +46,6 @@ Last update: 2025-10-24T01:44:46+00:00
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 7X / tactix® 7 / quatix® 7X Solar / Enduro™ 2 | fenix7x | round | 280 x 280 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 7X Pro | fenix7xpro | round | 280 x 280 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 7X Pro - Solar Edition (no Wi-Fi) | fenix7xpronowifi | round | 280 x 280 | 5.2 |  | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 43mm | fenix843mm | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 47mm / 51mm / tactix® 8 47mm / 51mm / quatix® 8 47mm / 51mm | fenix847mm | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 Solar 47mm | fenix8solar47mm | round | 260 x 260 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® 8 Solar 51mm / tactix® 8 Solar 51mm | fenix8solar51mm | round | 280 x 280 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | fēnix® E | fenixe | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 165 | fr165 | round | 390 x 390 | 5.2 |  | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 165 Music | fr165m | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 255 | fr255 | round | 260 x 260 | 5.2 |  | 64 KB | 256 KB | 64 KB | 512 KB | 128 KB | 512 KB | :x: | enter, up, menu, down, esc |
@@ -48,18 +54,13 @@ Last update: 2025-10-24T01:44:46+00:00
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 255s Music | fr255sm | round | 218 x 218 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 265 | fr265 | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 265s | fr265s | round | 360 x 360 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 570 42mm | fr57042mm | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 570 47mm | fr57047mm | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 955 / Solar | fr955 | round | 260 x 260 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 965 | fr965 | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 970 | fr970 | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | MARQ® (Gen 2) Athlete / Adventurer / Captain / Golfer / Carbon Edition / Commander - Carbon Edition | marq2 | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | MARQ® (Gen 2) Aviator | marq2aviator | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® 3 | venu3 | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® 3S | venu3s | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® X1 | venux1 | rectangle | 448 x 486 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | vívoactive® 5 | vivoactive5 | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | vívoactive® 6 | vivoactive6 | round | 390 x 390 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S50 | approachs50 | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S70 42mm | approachs7042mm | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Approach® S70 47mm | approachs7047mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
