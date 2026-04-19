@@ -1,0 +1,65 @@
+name: Heartbeat
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+jobs:
+  check_and_run:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check_last_commit.outputs.should_run }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check if last commit is 50+ days old
+        id: check_last_commit
+        run: |
+          # Get the timestamp of the last commit to main
+          LAST_COMMIT_DATE=$(git log -1 --format=%cI origin/main)
+          LAST_COMMIT_EPOCH=$(date -d "$LAST_COMMIT_DATE" +%s)
+          CURRENT_EPOCH=$(date +%s)
+          DIFF_DAYS=$(( ($CURRENT_EPOCH - $LAST_COMMIT_EPOCH) / 86400 ))
+
+          echo "Last commit: $LAST_COMMIT_DATE"
+          echo "Days since last commit: $DIFF_DAYS"
+
+          if [ $DIFF_DAYS -ge 50 ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
+  build:
+    permissions:
+      contents: write
+    needs: check_and_run
+    if: needs.check_and_run.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Create/Update Heartbeat File
+        run: |
+          echo "Last heartbeat: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" > .heartbeat
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .heartbeat
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Heartbeat: Repository activity check"
+            git push
+          fi
