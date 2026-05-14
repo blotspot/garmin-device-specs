@@ -1,12 +1,15 @@
 # Garmin Device Specs
 
-Last update: 2026-04-19T15:28:36+00:00
+Last update: 2026-05-14T02:32:15+00:00
 
 > [!IMPORTANT]
-> New device IDs: d2mach2pro
+> New device IDs: fr170, fr170m, fr70
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2026-05-14T02:32:15+00:00 | Forerunner® 170 | fr170 | round | 390 x 390 | 6.0 |  | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-05-14T02:32:15+00:00 | Forerunner® 170 Music | fr170m | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-05-14T02:32:15+00:00 | Forerunner® 70 | fr70 | round | 390 x 390 | 6.0 |  | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-04-19T15:28:36+00:00 | D2™ Mach 2 Pro | d2mach2pro | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-10-24T01:44:46+00:00 | D2™ Mach 2 | d2mach2 | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-10-01T01:55:59+00:00 | eTrex® Touch | etrextouch | rectangle | 240 x 400 | 5.1 |  | 32 KB | 128 KB |  | 2.2 MB |  | 1.0 MB | :heavy_check_mark: |  |
