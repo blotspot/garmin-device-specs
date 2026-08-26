@@ -1,21 +1,28 @@
 # Garmin Device Specs
 
-Last update: 2026-05-14T02:32:15+00:00
+Last update: 2026-08-26T00:51:36+00:00
 
 > [!IMPORTANT]
-> New device IDs: fr170, fr170m, fr70
+> New device IDs: fenix943mm, fenix947mm, fenix9pro43mm, fenix9pro47mm, fenix9pro51mm, fenix9prosolar47mm, fenix9prosolar51mm
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 43mm | fenix943mm | round | 416 x 416 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 47mm / 51mm | fenix947mm | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 Pro 43mm | fenix9pro43mm | round | 416 x 416 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 Pro 47mm | fenix9pro47mm | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 Pro 51mm | fenix9pro51mm | round | 466 x 466 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 Pro Solar 47mm | fenix9prosolar47mm | round | 260 x 260 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2026-08-26T00:51:36+00:00 | fēnix® 9 Pro Solar 51mm | fenix9prosolar51mm | round | 280 x 280 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-05-14T02:32:15+00:00 | Forerunner® 170 | fr170 | round | 390 x 390 | 6.0 |  | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-05-14T02:32:15+00:00 | Forerunner® 170 Music | fr170m | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-05-14T02:32:15+00:00 | Forerunner® 70 | fr70 | round | 390 x 390 | 6.0 |  | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-04-19T15:28:36+00:00 | D2™ Mach 2 Pro | d2mach2pro | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-10-24T01:44:46+00:00 | D2™ Mach 2 | d2mach2 | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-10-01T01:55:59+00:00 | eTrex® Touch | etrextouch | rectangle | 240 x 400 | 5.1 |  | 32 KB | 128 KB |  | 2.2 MB |  | 1.0 MB | :heavy_check_mark: |  |
+|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Instinct® Crossover AMOLED | instinctcrossoveramoled | round | 390 x 390 | 6.0 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 41mm | venu441mm | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Venu® 4 45mm | venu445mm | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
-|:heavy_check_mark: | 2025-09-18T01:43:14+00:00 | Instinct® Crossover AMOLED | instinctcrossoveramoled | round | 390 x 390 | 5.1 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 550 | edge550 | rectangle | 420 x 600 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :x: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2025-09-11T01:46:22+00:00 | Edge® 850 | edge850 | rectangle | 420 x 600 | 6.0 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2025-09-04T01:43:01+00:00 | fēnix® 8 Pro 47mm / 51mm / MicroLED | fenix8pro47mm | round | 454 x 454 | 5.2 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
@@ -34,6 +41,11 @@ Last update: 2026-05-14T02:32:15+00:00
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 570 42mm | fr57042mm | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 570 47mm | fr57047mm | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Forerunner® 970 | fr970 | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® 3 AMOLED 45mm | instinct3amoled45mm | round | 390 x 390 | 6.0 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® 3 AMOLED 50mm | instinct3amoled50mm | round | 416 x 416 | 6.0 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® 3 Solar 45mm / 50mm | instinct3solar45mm | semi-octagon | 176 x 176 | 6.0 |  | 32 KB | 32 KB | 32 KB | 128 KB | 64 KB | 128 KB | :x: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® E 40mm | instincte40mm | semi-octagon | 166 x 166 | 6.0 |  | 32 KB | 32 KB | 32 KB | 128 KB | 64 KB | 128 KB | :x: | enter, up, menu, down, esc |
+|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® E 45mm | instincte45mm | semi-octagon | 176 x 176 | 6.0 |  | 32 KB | 32 KB | 32 KB | 128 KB | 64 KB | 128 KB | :x: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® X1 | venux1 | rectangle | 448 x 486 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | vívoactive® 6 | vivoactive6 | round | 390 x 390 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | D2™ Mach 1 | d2mach1 | round | 416 x 416 | 5.2 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
@@ -71,11 +83,6 @@ Last update: 2026-05-14T02:32:15+00:00
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Descent™ Mk3 43mm / Mk3i 43mm | descentmk343mm | round | 390 x 390 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Descent™ Mk3i 51mm | descentmk351mm | round | 454 x 454 | 5.1 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Edge® Explore 2 | edgeexplore2 | rectangle | 240 x 400 | 5.1 |  | 32 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | start, lap |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® 3 AMOLED 45mm | instinct3amoled45mm | round | 390 x 390 | 5.1 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® 3 AMOLED 50mm | instinct3amoled50mm | round | 416 x 416 | 5.1 |  | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :x: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® 3 Solar 45mm / 50mm | instinct3solar45mm | semi-octagon | 176 x 176 | 5.1 |  | 32 KB | 32 KB | 32 KB | 128 KB | 64 KB | 128 KB | :x: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® E 40mm | instincte40mm | semi-octagon | 166 x 166 | 5.1 |  | 32 KB | 32 KB | 32 KB | 128 KB | 64 KB | 128 KB | :x: | enter, up, menu, down, esc |
-|:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Instinct® E 45mm | instincte45mm | semi-octagon | 176 x 176 | 5.1 |  | 32 KB | 32 KB | 32 KB | 128 KB | 64 KB | 128 KB | :x: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | D2™ Air X10 | d2airx10 | round | 416 x 416 | 5.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® 2 | venu2 | round | 416 x 416 | 5.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
 |:heavy_check_mark: | 2025-08-13T18:16:01+00:00 | Venu® 2 Plus | venu2plus | round | 416 x 416 | 5.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, menu, esc |
