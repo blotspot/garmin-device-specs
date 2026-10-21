@@ -1,12 +1,14 @@
 # Garmin Device Specs
 
-Last update: 2026-10-07T03:36:54+00:00
+Last update: 2026-10-21T02:45:56+00:00
 
 > [!IMPORTANT]
-> New device IDs: approachs7243mm, approachs7247mm, enduro4
+> New device IDs: edge1060, marq3
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2026-10-21T02:45:56+00:00 | Edge® 1060 | edge1060 | rectangle | 480 x 800 | 6.0 |  | 64 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
+|:heavy_check_mark: | 2026-10-21T02:45:56+00:00 | MARQ® (Gen 3) Athlete / Adventurer / Aviator / Commander / Golfer / Diver | marq3 | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-10-07T03:36:54+00:00 | Approach® S72 43mm | approachs7243mm | round | 416 x 416 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2026-10-07T03:36:54+00:00 | Approach® S72 47mm | approachs7247mm | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
 |:heavy_check_mark: | 2026-10-07T03:36:54+00:00 | Enduro™ 4 | enduro4 | round | 280 x 280 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
