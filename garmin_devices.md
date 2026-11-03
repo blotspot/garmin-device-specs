@@ -1,12 +1,14 @@
 # Garmin Device Specs
 
-Last update: 2026-10-21T02:45:56+00:00
+Last update: 2026-11-03T04:48:33+00:00
 
 > [!IMPORTANT]
-> New device IDs: edge1060, marq3
+> New device IDs: edgeexplore3, edgeexplore3plus
 
 | Active | Date | Name | Id | ScreenShape | ScreenSize | APILevel | AudioContentProviderMemory | BackgroundMemory | DataFieldMemory | GlanceMemory | WatchAppMemory | WatchFaceMemory | WidgetMemory | Touch | Buttons |
 | ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:heavy_check_mark: | 2026-11-03T04:48:33+00:00 | Edge® Explore 3 | edgeexplore3 | rectangle | 360 x 640 | 6.0 |  | 64 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start |
+|:heavy_check_mark: | 2026-11-03T04:48:33+00:00 | Edge® Explore 3 Plus | edgeexplore3plus | rectangle | 360 x 640 | 6.0 |  | 64 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start |
 |:heavy_check_mark: | 2026-10-21T02:45:56+00:00 | Edge® 1060 | edge1060 | rectangle | 480 x 800 | 6.0 |  | 64 KB | 128 KB | 64 KB | 1.0 MB |  | 1.0 MB | :heavy_check_mark: | lap, start, up, down, enter, menu, esc |
 |:heavy_check_mark: | 2026-10-21T02:45:56+00:00 | MARQ® (Gen 3) Athlete / Adventurer / Aviator / Commander / Golfer / Diver | marq3 | round | 454 x 454 | 6.0 | 512 KB | 64 KB | 128 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, up, menu, down, esc |
 |:heavy_check_mark: | 2026-10-07T03:36:54+00:00 | Approach® S72 43mm | approachs7243mm | round | 416 x 416 | 6.0 | 512 KB | 64 KB | 256 KB | 64 KB | 768 KB | 128 KB | 768 KB | :heavy_check_mark: | enter, esc |
