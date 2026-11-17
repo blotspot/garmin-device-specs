@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,9 @@
       html,
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
         line-height: 1.6;
         color: #333;
         font-size: 0.95rem;
@@ -145,17 +147,35 @@
 
       <div class="info-box">
         <ul>
-          <li><b>Simple Search:</b> Type any text to search across all fields (e.g., <code>round</code>).</li>
           <li>
-            <b>Advanced Query:</b> Use the format <code>Attribute Operator Value</code> (e.g., <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>). Supported operators are
-            <code>>=</code>, <code><=</code>, <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>. Concatenate several queries with <code>&&</code> or <code>AND</code>.
+            <b>Simple Search:</b> Type any text to search across all fields
+            (e.g., <code>round</code>).
           </li>
-          <li><b>Example:</b> <code>WatchFaceMemory > 0 && APILevel >= 3.1 && ScreenHeight >= 218 && round</code></li>
+          <li>
+            <b>Advanced Query:</b> Use the format
+            <code>Attribute Operator Value</code> (e.g.,
+            <code>WatchAppMemory >= 262144</code> or <code>APILevel > 3</code>).
+            Supported operators are <code>>=</code>, <code><=</code>,
+            <code>></code>, <code><</code>, <code>==</code>, <code>!=</code>.
+            Concatenate several queries with <code>&&</code> or
+            <code>AND</code>.
+          </li>
+          <li>
+            <b>Example:</b>
+            <code
+              >WatchFaceMemory > 0 && APILevel >= 3.1 && ScreenHeight >= 218 &&
+              round</code
+            >
+          </li>
         </ul>
       </div>
 
       <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search for text or use an advanced query..." />
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for text or use an advanced query..."
+        />
       </div>
 
       <div class="table-container">
@@ -185,6 +205,7 @@
           "ScreenShape",
           "ScreenSize",
           "APILevel",
+          "DisplayColors",
           "AudioContentProviderMemory",
           "BackgroundMemory",
           "DataFieldMemory",
@@ -216,7 +237,9 @@
 
         function renderTableHeaders() {
           tableHeaders.innerHTML = "";
-          document.getElementById("initial-status").querySelector("td").colSpan = COLUMNS.length;
+          document
+            .getElementById("initial-status")
+            .querySelector("td").colSpan = COLUMNS.length;
 
           COLUMNS.forEach((col, index) => {
             const th = document.createElement("th");
@@ -264,7 +287,10 @@
             const memoryValue = parseInt(item[col], 10);
             if (!isNaN(memoryValue)) {
               if (memoryValue >= 1024 * 1024) {
-                return (memoryValue / (1024 * 1024)).toFixed(2).toLocaleString() + " MB";
+                return (
+                  (memoryValue / (1024 * 1024)).toFixed(2).toLocaleString() +
+                  " MB"
+                );
               } else {
                 return (memoryValue / 1024).toFixed(0).toLocaleString() + " KB";
               }
@@ -310,8 +336,11 @@
         function fetchData() {
           fetch(JSON_URL)
             .then((response) => {
-              if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-              const lastModified = new Date(response.headers.get("last-modified"));
+              if (!response.ok)
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              const lastModified = new Date(
+                response.headers.get("last-modified"),
+              );
               if (lastModified) {
                 lastUpdatedSpan.textContent = `${lastModified.toLocaleDateString()} at ${lastModified.toLocaleTimeString()}`;
               } else {
@@ -331,7 +360,10 @@
             })
             .catch((error) => {
               console.error("Error fetching data:", error);
-              renderStatus("Could not load data. Please check the console for details.", true);
+              renderStatus(
+                "Could not load data. Please check the console for details.",
+                true,
+              );
             });
         }
 
@@ -351,7 +383,9 @@
             return true;
           } else if (attribute === null && operator === null) {
             // If no attribute is specified, check if the value is in any field
-            return Object.values(item).some((val) => String(val).toLowerCase().includes(value.toLowerCase()));
+            return Object.values(item).some((val) =>
+              String(val).toLowerCase().includes(value.toLowerCase()),
+            );
           } else {
             const itemValue = item[attribute];
             if (itemValue === undefined) {
@@ -388,7 +422,8 @@
         }
 
         function filterData(query) {
-          const advancedQueryRegex = /^(\w+)\s*([><!=]=?)\s*"?\s*([-_\d\w\s\.]+)?\s*"?\s*$/;
+          const advancedQueryRegex =
+            /^(\w+)\s*([><!=]=?)\s*"?\s*([-_\d\w\s\.]+)?\s*"?\s*$/;
           const separatorRegex = /\s+(?:AND|&&)\s+/i;
           const match = query.match(advancedQueryRegex);
 
@@ -412,7 +447,10 @@
             sortTableByColumn(sortingColumn || tableHeaders.firstElementChild);
           } catch (error) {
             console.error("Error fetching data:", error);
-            renderStatus("Error processing query. Please check the console for details.", true);
+            renderStatus(
+              "Error processing query. Please check the console for details.",
+              true,
+            );
           }
         }
 
@@ -466,7 +504,9 @@
             if (column.endsWith("Memory")) {
               comparison = (valA ?? 0) - (valB ?? 0);
             } else {
-              comparison = String(valA).localeCompare(String(valB), undefined, { sensitivity: "base" });
+              comparison = String(valA).localeCompare(String(valB), undefined, {
+                sensitivity: "base",
+              });
             }
 
             return currentDirection === "asc" ? comparison : -comparison;
@@ -489,7 +529,9 @@
           });
 
           // Add sorting indicator to the current column
-          headerElement.classList.add(currentDirection === "asc" ? "sort-asc" : "sort-desc");
+          headerElement.classList.add(
+            currentDirection === "asc" ? "sort-asc" : "sort-desc",
+          );
         }
 
         initialize();

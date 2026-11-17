@@ -246,6 +246,7 @@ def save_markdown_table(filename, all_devices_data: dict, new_ids: set):
         "ScreenShape",
         "ScreenSize",
         "APILevel",
+        "DisplayColors",
         "AudioContentProviderMemory",
         "BackgroundMemory",
         "DataFieldMemory",

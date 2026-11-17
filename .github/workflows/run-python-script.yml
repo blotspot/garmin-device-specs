@@ -47,6 +47,19 @@ jobs:
             echo "pushed=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Release device JSON
+        if: steps.push_and_signal.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          commit_sha=$(git rev-parse HEAD)
+          version_date=$(date -u +%Y%m%d)
+          tag="v${version_date}.${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}"
+          gh release create "$tag" garmin_devices.json \
+            --target "$commit_sha" \
+            --title "Device specs ${version_date} (${GITHUB_RUN_NUMBER})" \
+            --notes "Automated device database snapshot from ${commit_sha}."
+
       - name: Trigger Pages Deploy
         if: steps.push_and_signal.outputs.pushed == 'true'
         uses: actions/github-script@v9
